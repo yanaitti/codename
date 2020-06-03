@@ -197,7 +197,6 @@
             $('#applyingList').append(data.players[pIdx].nickname + '(' + data.players[pIdx].playerid + ')' + ',');
             if(cId == data.players[pIdx].playerid){
               playerPos = pIdx;
-              teamid = data.players[pIdx].teamid;
             }
           }
 
@@ -212,9 +211,9 @@
             }
 
             // checking turn
-            if(teamid % 2 == data.turn){
+            if(data.players[playerPos].teamid % 2 == data.turn){
               $('#turn').text('your turn')
-              if(teamid < 2){
+              if(data.players[playerPos].teamid < 2){
                 $('#sec4').show();
               }
             }else{
