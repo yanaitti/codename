@@ -431,17 +431,17 @@ def setcard_game(gameid, teamid, answer_inp):
     app.logger.debug(teamid)
 
     if answer['type'] != teamid:
-        if answer['type'] == 3:
+        if answer['type'] == 2:
             answer['type'] += 10
             game['status'] = 'end'
             cache.set(gameid, game)
-            return 'ng'
+            return 'ng2'
 
         answer['type'] += 10
         game['turn'] = (game['turn'] + 1) % 2
 
         cache.set(gameid, game)
-        return 'ng'
+        return 'ng1'
 
     answer['type'] += 10
 

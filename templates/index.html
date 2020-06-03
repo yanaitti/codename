@@ -36,6 +36,7 @@
       </div>
       <div id='sec3' style='display:none'>
         Your Team turn: <span id='turn'></span><br/>
+        <span id='gameover'></span>
         <hr/>
         Game Board:<br/>
         <table id='gameboard' board=1>
@@ -200,67 +201,80 @@
             }
           }
 
-          if(data.status == 'started'){
-            $('#sec2').show()
+          switch(data.status){
+            case 'started':
+              $('#sec2').show();
+              $('#gameover').empty();
 
-            if(data.answers.length != $('#card_sel').children('option').length){
-              $('#card_sel').children().remove();
-              for(var pIdx in data.answers){
-                $('#card_sel').append('<option value="'+data.answers[pIdx]+'">'+data.answers[pIdx]+'</option>');
-              }
-            }
-
-            // checking turn
-            if(data.players[playerPos].teamid % 2 == data.turn){
-              $('#turn').text('your turn')
-              if(data.players[playerPos].teamid < 2){
-                $('#sec4').show();
-              }
-            }else{
-              $('#turn').text('not your turn')
-              $('#sec4').css('display', 'none');
-            }
-
-            // game board
-            $('#gameboard tr').remove();
-            var idx = 0;
-            for(var r = 0; r < 5; r++){
-              var rowtable = $('<tr></tr>').appendTo($('#gameboard'));
-              for(var c = 0; c < 5; c++){
-                if((teamid < 9 && teamid > 1) || data.board[idx].type > 3){
-                  switch(data.board[idx].type){
-                    case 0:
-                      $('<td bgcolor="#ff6666">' + data.board[idx].codename + '</td>').appendTo(rowtable);
-                      break;
-                    case 1:
-                      $('<td bgcolor="#6699ff">' + data.board[idx].codename + '</td>').appendTo(rowtable);
-                      break;
-                    case 2:
-                      $('<td bgcolor="#ddd">' + data.board[idx].codename + '</td>').appendTo(rowtable);
-                      break;
-                    case 10:
-                      $('<td bgcolor="#ff6666"><font color="#ff6666">' + data.board[idx].codename + '</font></td>').appendTo(rowtable);
-                      break;
-                    case 11:
-                      $('<td bgcolor="#6699ff"><font color="#6699ff">' + data.board[idx].codename + '</font></td>').appendTo(rowtable);
-                      break;
-                    case 12:
-                      $('<td bgcolor="#ddd"><font color="#ddd">' + data.board[idx].codename + '</font></td>').appendTo(rowtable);
-                      break;
-                    case 13:
-                      $('<td><font color="#fff">' + data.board[idx].codename + '</font></td>').appendTo(rowtable);
-                      break;
-                    default:
-                      $('<td>' + data.board[idx].codename + '</td>').appendTo(rowtable);
-                      break;
-                  }
-                }else{
-                  $('<td>' + data.board[idx].codename + '</td>').appendTo(rowtable);
+              if(data.answers.length != $('#card_sel').children('option').length){
+                $('#card_sel').children().remove();
+                for(var pIdx in data.answers){
+                  $('#card_sel').append('<option value="'+data.answers[pIdx]+'">'+data.answers[pIdx]+'</option>');
                 }
-                idx++;
               }
-            }
 
+              // checking turn
+              teamid = data.players[playerPos].teamid;
+              console.log("teamid:" + teamid + "turn:" + data.turn)
+              if(teamid % 2 == data.turn){
+                $('#turn').text('your turn')
+                if(teamid < 2){
+                  $('#sec4').show();
+                }
+              }else{
+                $('#turn').text('not your turn')
+                $('#sec4').css('display', 'none');
+              }
+
+              // game board
+              $('#gameboard tr').remove();
+              if(teamid < 9){
+                var idx = 0;
+                for(var r = 0; r < 5; r++){
+                  var rowtable = $('<tr></tr>').appendTo($('#gameboard'));
+                  for(var c = 0; c < 5; c++){
+                    if(teamid > 1 || data.board[idx].type > 3){
+                      switch(data.board[idx].type){
+                        case 0:
+                          $('<td bgcolor="#ff6666">' + data.board[idx].codename + '</td>').appendTo(rowtable);
+                          break;
+                        case 1:
+                          $('<td bgcolor="#6699ff">' + data.board[idx].codename + '</td>').appendTo(rowtable);
+                          break;
+                        case 2:
+                          $('<td bgcolor="#ddd">' + data.board[idx].codename + '</td>').appendTo(rowtable);
+                          break;
+                        case 10:
+                          $('<td bgcolor="#ff6666"><font color="#ff6666">' + data.board[idx].codename + '</font></td>').appendTo(rowtable);
+                          break;
+                        case 11:
+                          $('<td bgcolor="#6699ff"><font color="#6699ff">' + data.board[idx].codename + '</font></td>').appendTo(rowtable);
+                          break;
+                        case 12:
+                          $('<td bgcolor="#ddd"><font color="#ddd">' + data.board[idx].codename + '</font></td>').appendTo(rowtable);
+                          break;
+                        case 13:
+                          $('<td><font color="#fff">' + data.board[idx].codename + '</font></td>').appendTo(rowtable);
+                          break;
+                        default:
+                          $('<td>' + data.board[idx].codename + '</td>').appendTo(rowtable);
+                          break;
+                      }
+                    }else{
+                      $('<td>' + data.board[idx].codename + '</td>').appendTo(rowtable);
+                    }
+                    idx++;
+                  }
+                }
+              }
+              break;
+            case 'end':
+              $('#gameover').text('Game Over');
+              $('input[type="radio"]').prop("disabled", false);
+              $('#setteam').prop("disabled", false);
+              $('#sec4').css('display', 'none');
+              $('#card_sel').children().remove();
+              break;
           }
         })
         .fail(function() {
