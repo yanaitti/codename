@@ -300,7 +300,6 @@ def create_game(nickname=''):
     game = {
         'status': 'waiting',
         'routeidx': 0,
-        'stocks': list(range(2, 99)),
         'players': []}
     player = {}
 
@@ -308,7 +307,6 @@ def create_game(nickname=''):
     game['gameid'] = gameid
     player['playerid'] = gameid
     player['nickname'] = nickname if nickname != '' else gameid
-    player['holdcards'] = []
     game['players'].append(player)
 
     app.logger.debug(gameid)
@@ -340,7 +338,6 @@ def join_game(gameid, nickname='default'):
             player['nickname'] = playerid
         else:
             player['nickname'] = nickname
-        player['holdcards'] = []
         game['players'].append(player)
 
         cache.set(gameid, game)
