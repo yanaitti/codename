@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>CODE NAME(コードネーム) ONLINE</title>
+    <title>CODE NAMES(コードネーム) ONLINE</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
@@ -29,11 +29,11 @@
       </div>
       <div id='sec2' style='display:none'>
         <h2>Your role</h2>
-        <input type='radio' name='role' id='role' value='0'/><font color='#ff6666'>◆</font>A回答者<br/>
-        <input type='radio' name='role' id='role' value='1'/><font color='#6699ff'>■</font>B回答者<br/>
-        <input type='radio' name='role' id='role' value='2'/><font color='#ff6666'>◆</font>Aスパイマスター<br/>
-        <input type='radio' name='role' id='role' value='3'/><font color='#6699ff'>■</font>Bスパイマスター<br/>
-        <button id="setteam">選択する(set the team)</button><br/>
+        <input type='radio' name='role' id='role' value='0'/><font color='#ff6666'>◆</font>{{ gettext('txt_readteam_member') }}<br/>
+        <input type='radio' name='role' id='role' value='1'/><font color='#6699ff'>■</font>{{ gettext('txt_blueteam_member') }}<br/>
+        <input type='radio' name='role' id='role' value='2'/><font color='#ff6666'>◆</font>{{ gettext('txt_redteam_leader') }}<br/>
+        <input type='radio' name='role' id='role' value='3'/><font color='#6699ff'>■</font>{{ gettext('txt_blueteam_leader') }}<br/>
+        <button id="setteam">{{ gettext('btn_set_yourrole') }}</button><br/>
         <hr/>
       </div>
       <div id='sec3' style='display:none'>
@@ -48,9 +48,9 @@
       </div>
       <div id='sec4' style='display:none'>
         <select name='card_sel' id="card_sel"></select><br/>
-        <button id="setCard">回答する(set the card)</button><br/>
+        <button id="setCard">{{ gettext('btn_answer') }}</button><br/>
         <br/>
-        <button id="nextTeam">次のTeamへ(Go on Next team)</button><br/>
+        <button id="nextTeam">{{ gettext('btn_turnend') }}</button><br/>
       </div>
       <br/>
       <span id='message'></span><br/>

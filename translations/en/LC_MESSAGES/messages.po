@@ -1,0 +1,47 @@
+# English translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-02-10 21:06+0900\n"
+"PO-Revision-Date: 2021-02-10 21:08+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: templates/index.html:32
+msgid "txt_readteam_member"
+msgstr "Red team member"
+
+#: templates/index.html:33
+msgid "txt_blueteam_member"
+msgstr "Blue team member"
+
+#: templates/index.html:34
+msgid "txt_redteam_leader"
+msgstr "Red team leader"
+
+#: templates/index.html:35
+msgid "txt_blueteam_leader"
+msgstr "Blue team member"
+
+#: templates/index.html:36
+msgid "btn_set_yourrole"
+msgstr "Role set"
+
+#: templates/index.html:51
+msgid "btn_answer"
+msgstr "Answer"
+
+#: templates/index.html:53
+msgid "btn_turnend"
+msgstr "Turn end"
