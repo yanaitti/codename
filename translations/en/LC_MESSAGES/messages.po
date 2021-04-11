@@ -32,7 +32,7 @@ msgstr "Red team leader"
 
 #: templates/index.html:35
 msgid "txt_blueteam_leader"
-msgstr "Blue team member"
+msgstr "Blue team leader"
 
 #: templates/index.html:36
 msgid "btn_set_yourrole"
